@@ -6,10 +6,10 @@
 #define DHTTYPE DHT11  // Type of DHT sensor
 
 char ssid[] = "Sujal Jain";     // WiFi SSID
-char pass[] = "12345678"; // WiFi Password
+char pass[] = PASSWORD; // WiFi Password
 
-unsigned long channelID = 2250487;         // Your ThingSpeak Channel ID
-const char *apiKey = "0BF37U5HSA2OT55X";   // Your ThingSpeak API Key
+unsigned long channelID = CHANNEL_ID;         // Your ThingSpeak Channel ID
+const char *apiKey = API_KEY;   // Your ThingSpeak API Key
 
 DHT dht(DHTPIN, DHTTYPE);
 
@@ -50,7 +50,6 @@ void connectWiFi() {
 
 void sendDataToThingSpeak(float temp, float humidity) {
   ThingSpeak.setField(1, temp);       // Set field 1 with temperature data
-  ThingSpeak.setField(2, humidity);   // Set field 2 with humidity data
   
   int httpCode = ThingSpeak.writeFields(channelID, apiKey);
 
